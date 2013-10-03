@@ -3,6 +3,11 @@ var fs = require('fs');
 
 var config = fs.read('config.yml').split(/\r\n|\r|\n/g);
 
+if (config.length !== 3) {
+    console.log("Invalid configuration format!");
+    casper.exit();
+}
+
 var email = config[0];
 var password = config[1];
 var userId = config[2];
