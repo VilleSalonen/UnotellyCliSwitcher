@@ -1,7 +1,7 @@
-UnotellyCliSwitcher
-===================
+Unotelly CLI Switcher
+=====================
 
-CLI utility for changing Netflix countries on Unotelly.
+CLI utility for changing Netflix countries on Unotelly. Requires CasperJS.
 
 To use, add a file called switch.cfg with exactly three lines. First line should be the email, second line the password and third line your user ID on Unotelly (for example 396750).
 
