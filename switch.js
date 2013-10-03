@@ -1,7 +1,7 @@
 var casper = require('casper').create();
 var fs = require('fs');
 
-var config = fs.read('config.yml').split(/\r\n|\r|\n/g);
+var config = fs.read('switch.cfg').split(/\r\n|\r|\n/g);
 
 if (config.length !== 3) {
     console.log("Invalid configuration format!");
@@ -26,8 +26,14 @@ var countries = {
     'nld': 27,
 };
 
+var keys = [];
+for (var k in countries) keys.push(k.toUpperCase());
+
 if (casper.cli.args.length !== 1) {
-    console.log('Usage: casperjs switch.js CAN');
+    console.log('Unotelly CLI Switcher');
+    console.log('Usage: casperjs switch.js [country name]');
+    console.log('Example: casperjs switch.js CAN');
+    console.log('Valid country names: ' + keys.join(', '));
     casper.exit();
 }
 
