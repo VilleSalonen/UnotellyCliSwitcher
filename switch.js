@@ -1,7 +1,7 @@
 var casper = require('casper').create();
 var fs = require('fs');
 
-var config = fs.read('switch.cfg').split(/\r\n|\r|\n/g);
+var config = fs.read('switch.cfg').trim().split(/\r\n|\r|\n/g);
 
 if (config.length !== 3) {
     console.log("Invalid configuration format!");
