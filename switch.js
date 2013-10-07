@@ -1,4 +1,10 @@
-var casper = require('casper').create();
+var casper = require('casper').create({
+    onLoadError: function() {
+        console.log('Error loading Unotelly web page.');
+        casper.exit();
+    }
+});
+
 var fs = require('fs');
 
 var config = fs.read('switch.cfg').trim().split(/\r\n|\r|\n/g);
@@ -53,11 +59,13 @@ casper.start('http://quickstart3.unotelly.com/login', function() {
 });
 
 casper.thenOpen('http://quickstart3.unotelly.com/user/' + userId + '/dynamo', function () {
-    this.fill('form', {
-        '4':      countryCode + ''
-    });
+    casper.waitForSelector('.ajaxSend', function() {
+        this.fill('form', {
+            '4': countryCode + ''
+        });
     
-    console.log("Switched to " + countryName.toUpperCase() + ".");
+        console.log("Switched to " + countryName.toUpperCase() + ".");
+    });    
 });
 
 casper.run();
