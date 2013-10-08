@@ -56,16 +56,16 @@ casper.start('http://quickstart3.unotelly.com/login', function() {
         'email':      email,
         'password':   password
     }, true);
+    this.wait(500);
 });
 
 casper.thenOpen('http://quickstart3.unotelly.com/user/' + userId + '/dynamo', function () {
-    casper.waitForSelector('.ajaxSend', function() {
-        this.fill('form', {
-            '4': countryCode + ''
-        });
-    
-        console.log("Switched to " + countryName.toUpperCase() + ".");
-    });    
+    this.fill('form', {
+        '4': countryCode + ''
+    });
+    this.waitForText('Netflix has been updated', function() {
+        console.log("Switched to " + countryName.toUpperCase() + ".");    
+    });
 });
 
 casper.run();
